@@ -2,22 +2,30 @@ import { Button, Container, Nav, Navbar as NavbarBS } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
 
+import { useShoppingCart } from "../context/ShoppingCartContext";
+
 export function Navbar() {
+  const { openCart, cartQuantity } = useShoppingCart();
+
   return (
-    <NavbarBS sticky="top" className="bg-white shadow-sm mb-3">
+    <NavbarBS sticky="top" className="bg-white shadow-sm mb-4">
       <Container>
         <Nav className="me-auto">
           <Nav.Link to={"/"} as={NavLink}>
             Home
           </Nav.Link>
+
           <Nav.Link to={"/store"} as={NavLink}>
             Store
           </Nav.Link>
+
           <Nav.Link to={"/about"} as={NavLink}>
             About
           </Nav.Link>
         </Nav>
+
         <Button
+          onClick={openCart}
           variant="outline-danger"
           style={{
             display: "flex",
@@ -26,7 +34,7 @@ export function Navbar() {
           }}
         >
           <BsCart style={{ width: "1.5rem", height: "1.5rem" }} />
-          <div>3</div>
+          <div>{cartQuantity}</div>
         </Button>
       </Container>
     </NavbarBS>
