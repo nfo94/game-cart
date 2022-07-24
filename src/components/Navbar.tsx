@@ -5,7 +5,7 @@ import { BsCart } from "react-icons/bs";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export function Navbar() {
-  const { openCart, cartQuantity } = useShoppingCart();
+  const { isOpen, openCart, cartQuantity } = useShoppingCart();
 
   return (
     <NavbarBS sticky="top" className="bg-white shadow-sm mb-4">
@@ -26,6 +26,7 @@ export function Navbar() {
 
         <Button
           onClick={openCart}
+          active={isOpen}
           variant="outline-danger"
           style={{
             display: "flex",
