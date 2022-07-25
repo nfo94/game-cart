@@ -1,29 +1,16 @@
-import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 
 import { StoreItem } from "../components/StoreItem";
-
-interface Game {
-  id: number;
-  name: string;
-  price: number;
-  imgUrl: string;
-}
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export function Store() {
-  const [games, setGames] = useState<Game[]>([]);
-
-  useEffect(() => {
-    fetch("/store")
-      .then((response) => response.json())
-      .then((json) => setGames(json));
-  }, []);
+  const { storedItems } = useShoppingCart();
 
   return (
     <>
       <h1>Store</h1>
       <Row md={2} xs={1} lg={3} className={"g-3"}>
-        {games.map((item) => (
+        {storedItems.map((item) => (
           <Col key={item.id}>
             <StoreItem
               id={item.id}
