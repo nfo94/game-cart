@@ -7,7 +7,7 @@ export function Store() {
   const { storedItems } = useShoppingCart();
 
   return (
-    <>
+    <main>
       <h1>Store</h1>
       <Row md={2} xs={1} lg={3} className={"g-3"}>
         {storedItems.map((item) => (
@@ -21,6 +21,6 @@ export function Store() {
           </Col>
         ))}
       </Row>
-    </>
+    </main>
   );
 }

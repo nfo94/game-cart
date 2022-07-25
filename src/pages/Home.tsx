@@ -1,3 +1,7 @@
 export function Home() {
-  return <h1>Home</h1>;
+  return (
+    <main className="d-flex justify-content-center">
+      <h1>Game Shopping</h1>
+    </main>
+  );
 }
