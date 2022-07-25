@@ -1,28 +1,12 @@
-import { useEffect, useState } from "react";
-
 import { Offcanvas, Stack } from "react-bootstrap";
 
 import { CartItem } from "../components/CartItem";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-
-interface Item {
-  id: number;
-  name: string;
-  price: number;
-  imgUrl: string;
-}
+import { formatCurrency } from "../utils/formatCurrency";
 
 export function ShoppingCart() {
-  const [items, setItems] = useState<Item[]>([]);
-  const { isOpen, openCart, cartItems } = useShoppingCart();
-
-  useEffect(() => {
-    fetch("/store")
-      .then((response) => response.json())
-      .then((json) => {
-        setItems(json);
-      });
-  }, []);
+  const { isOpen, openCart, cartItems, storedItems, total } = useShoppingCart();
+  const hasCartItems = cartItems.length > 0;
 
   return (
     <Offcanvas show={isOpen} onHide={openCart} placement="end">
@@ -31,9 +15,9 @@ export function ShoppingCart() {
       </Offcanvas.Header>
       <Offcanvas.Body>
         <Stack gap={3}>
-          {cartItems.length > 0 &&
+          {hasCartItems &&
             cartItems.map((item) => {
-              const itemFound = items.find(
+              const itemFound = storedItems.find(
                 (itemInStore) => itemInStore.id === item.id
               ) || {
                 name: "",
@@ -46,12 +30,19 @@ export function ShoppingCart() {
                   id={item.id}
                   quantity={item.quantity}
                   name={itemFound.name}
-                  price={itemFound.price}
+                  price={item.price}
                   imgUrl={itemFound.imgUrl}
                 />
               );
             })}
-          <div></div>
+          {hasCartItems && (
+            <div className="ms-auto">
+              <h5 style={{ display: "inline-block", marginRight: "5px" }}>
+                Total:
+              </h5>
+              <span>{formatCurrency(total)}</span>
+            </div>
+          )}
         </Stack>
       </Offcanvas.Body>
     </Offcanvas>

@@ -40,7 +40,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
             <Button
               className="w-100"
               variant="danger"
-              onClick={() => increaseItemQuantity(id)}
+              onClick={() => increaseItemQuantity(id, price)}
             >
               Add to cart
             </Button>
@@ -55,7 +55,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
               >
                 <Button
                   variant="outline-danger"
-                  onClick={() => decreaseItemQuantity(id)}
+                  onClick={() => decreaseItemQuantity(id, price)}
                 >
                   -
                 </Button>
@@ -66,7 +66,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
 
                 <Button
                   variant="outline-danger"
-                  onClick={() => increaseItemQuantity(id)}
+                  onClick={() => increaseItemQuantity(id, price)}
                 >
                   +
                 </Button>
