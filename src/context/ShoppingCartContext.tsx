@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import { ShoppingCart } from "../components/ShoppingCart";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import { api } from "../services/api";
 
 type ShoppingCartProviderProps = {
@@ -48,7 +49,10 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [storedItems, setStoredItems] = useState<StoredItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+    "shoppingCart",
+    []
+  );
 
   useEffect(() => {
     api.get("/store").then((response) => setStoredItems(response.data));
