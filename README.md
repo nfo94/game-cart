@@ -6,9 +6,17 @@
 
 Store and shopping cart functionality made with React, TypeScript and [Vite](https://vitejs.dev/).
 
+### Installing dependencies
+
+To install this project dependencies, run this command on the terminal:
+
+```bash
+$ yarn
+```
+
 ### Running the app
 
-To run the app type this command on the terminal:
+After installing dependencies, to run the app, type on the terminal:
 
 ```bash
 $ yarn dev
