@@ -2,7 +2,7 @@
 
 <br/>
 
-![uidemo](./public/imgs/ui.png)
+![uidemo](https://user-images.githubusercontent.com/24434214/182345114-84512a6a-d633-4412-9cca-c5af4bd9e3ab.png)
 
 Store and shopping cart functionality made with React, TypeScript and [Vite](https://vitejs.dev/).
 
